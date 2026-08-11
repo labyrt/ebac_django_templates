@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Posts | Meu Blog{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+        <article class="card post-card mb-4">
+            <div class="card-body p-4">
+                <h2 class="card-title fw-normal">{{ post.title }}</h2>
+                <p class="text-muted mb-2">
+                    {{ post.author.username }} | {{ post.created_at|date:"d/m/Y, H:i" }}
+                </p>
+                <p class="card-text">{{ post.body|truncatewords:24 }}</p>
+                <a class="btn btn-primary" href="{% url 'blog:post-detail' post.pk %}">
+                    Read More →
+                </a>
+            </div>
+        </article>
+    {% empty %}
+        <div class="alert alert-light border">Nenhum post publicado ainda.</div>
+    {% endfor %}
+{% endblock %}
