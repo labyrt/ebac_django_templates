@@ -1,7 +1,8 @@
-# Meu Blog — Django e pytest
+# Meu Blog — Django Templates
 
-Projeto desenvolvido para o exercício de Python Avançado da EBAC. A aplicação
-contém o aplicativo `blog`, o modelo `Post` e um teste automatizado com pytest.
+Projeto desenvolvido para o exercício de Django da EBAC. A aplicação usa
+herança de templates para apresentar a lista de posts, o detalhe de cada post e
+uma barra lateral reutilizável.
 
 ## Tecnologias
 
@@ -36,5 +37,5 @@ Acesse `http://127.0.0.1:8000/` no navegador.
 pytest
 ```
 
-Os testes automatizados validam a criação do modelo `Post` e a view inicial da
-aplicação, que responde `Hello World` na rota principal.
+Os testes automatizados validam o modelo `Post`, a listagem somente de posts
+publicados, a página de detalhes e os templates compartilhados.
