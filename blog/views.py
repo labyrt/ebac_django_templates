@@ -1,9 +1,25 @@
-from django.http import HttpResponse
-from django.views import View
+from django.views.generic import DetailView, ListView
+
+from .models import Post
 
 
-class PostView(View):
-    """Exibe a resposta inicial da área de posts."""
+class PostListView(ListView):
+    """Lista os posts publicados na página inicial."""
 
-    def get(self, request, *args, **kwargs):
-        return HttpResponse("Hello World")
+    model = Post
+    template_name = "index.html"
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        return Post.objects.filter(published=True).select_related("author")
+
+
+class PostDetailView(DetailView):
+    """Exibe o conteúdo completo de um post publicado."""
+
+    model = Post
+    template_name = "post_detail.html"
+    context_object_name = "post"
+
+    def get_queryset(self):
+        return Post.objects.filter(published=True).select_related("author")
